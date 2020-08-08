@@ -1,4 +1,6 @@
 import React from 'react';
+import Cart from './components/Cart.js';
+import Link from './components/Link.js';
 
 function Navbar() {
 	return (
@@ -7,21 +9,11 @@ function Navbar() {
   			<a className="navbar-brand" href="#">DePartes.com</a>
 	    		<ul className="navbar-nav">
 	  				<div className="row">
-				      	<li className="col nav-item active">
-				        	<a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
-				      	</li>
-				      	<li className="col nav-item">
-				        	<a className="nav-link" href="#">Productos</a>
-				      	</li>
-					    <li className="col nav-item">
-					      	<a className="nav-link" href="#">FAQs</a>
-					    </li>
-					    <li className="col nav-item">
-					        <a className="nav-link" href="#">Contacto</a>
-					    </li>
-					    <li className="col nav-item">
-					        <a className="nav-link" href="#"><i className="fa fa-shopping-cart"></i></a>
-					    </li>
+				      	<Link name="Home" />
+				      	<Link name="Productos" />
+				      	<Link name="Categorias" />
+				      	<Link name="Contacto" />
+					    <Cart />
 		  			</div>
 		    	</ul>
 		</nav>
