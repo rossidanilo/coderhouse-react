@@ -1,6 +1,6 @@
 import React from 'react';
-import Cart from './components/Cart.js';
-import Link from './components/Link.js';
+import Cart from './Cart.js';
+import Link from './Link.js';
 
 function Navbar() {
 	return (
