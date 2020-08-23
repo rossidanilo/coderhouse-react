@@ -1,19 +1,19 @@
 import React from 'react';
-import Cart from './Cart.js';
-import Link from './Link.js';
+import CartIcon from './CartIcon.js';
+import NavBarElement from './NavBarElement.js';
+import { Link } from 'react-router-dom';
 
 function Navbar() {
 	return (
-
 		<nav className="navbar navbar-dark bg-dark">
-  			<a className="navbar-brand" href="#">DePartes.com</a>
+  			<Link className="navbar-brand" to="/">DePartes.com</Link>
 	    		<ul className="navbar-nav">
 	  				<div className="row">
-				      	<Link name="Home" />
-				      	<Link name="Productos" />
-				      	<Link name="Categorias" />
-				      	<Link name="Contacto" />
-					    <Cart />
+				      	<NavBarElement name="Home" destination="/" />
+				      	<NavBarElement name="Productos" destination="/" />
+				      	<NavBarElement name="Categorias" destination="/" />
+				      	<NavBarElement name="Contacto" destination="/" />
+					    <CartIcon />
 		  			</div>
 		    	</ul>
 		</nav>

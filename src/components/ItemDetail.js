@@ -1,5 +1,5 @@
 import React from 'react';
-import ItemCount from './ItemCount.js';
+import ItemCount from './home/ItemCount.js';
 
 const ItemDetail = function({id, name, brand, price, initial, max, min, image}) {
 
@@ -8,7 +8,7 @@ const ItemDetail = function({id, name, brand, price, initial, max, min, image}) 
 	return 	<div className='container'>
 				<div className='row text-center'>
 					<div className='col'>
-						<img src={image} />
+						<img src={image} className='img-thumbnail' />
 					</div>
 					<div className='col container'>
 						<div className='pt-5'>

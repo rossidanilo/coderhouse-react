@@ -1,8 +1,11 @@
 import React from 'react';
 import ItemCount from './ItemCount.js';
-import ProductImage from '../../assets/car-spark-plug.jpg';
+import { Link } from 'react-router-dom';
 
 const style = {
+	link: {
+		textDecoration: 'none',
+	},
 	card: {
 		marginTop: 20,
 		width: '30%',
@@ -18,16 +21,18 @@ const style = {
 	},
 }
 
-const Item = function({id, name, brand, price, initial, min, max}){
+const Item = function({id, name, brand, price, initial, min, max, image}){
 	const addToCart = function(quantity){console.log('Se agregaron '+ quantity + ' unidades al carrito')}
 	return(
-		<div className="card" style={style.card}>
-			<h3>{name}</h3>
-			<h5>{brand}</h5>
-			<p>${price}</p>
-  			<img style={style.image} className="card-img-top img-thumbnail" src={ProductImage} alt="product-image"/>
-			<ItemCount max={max} min={min} initial={initial} onAdd={addToCart}/>
-		</div>
+			<div className="card align-items-stretch" style={style.card}>
+				<Link style={style.link} to={`/item/${id}`}>
+					<h3>{name}</h3>
+				</Link>
+				<h5>{brand}</h5>
+				<p>${price}</p>
+	  			<img style={style.image} className="card-img-top img-thumbnail" src={image} alt="product-image"/>
+				<ItemCount max={max} min={min} initial={initial} onAdd={addToCart}/>
+			</div>
 		);
 }
 
