@@ -20,11 +20,6 @@ const Footer = function(){
     						</div>
     						<div className="col">
     							<Link exact to="/" className="text-white">
-    								<p>Categorías</p>
-    							</Link>
-    						</div>
-    						<div className="col">
-    							<Link exact to="/" className="text-white">
     								<p>Contacto</p>
     							</Link>
     						</div>

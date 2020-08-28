@@ -1,5 +1,5 @@
-import React from 'react';
-import ItemCount from './home/ItemCount.js';
+import React, { useState } from 'react';
+import PanelContainer from './PanelContainer.js';
 
 const ItemDetail = function({id, name, brand, price, initial, max, min, image}) {
 
@@ -18,11 +18,12 @@ const ItemDetail = function({id, name, brand, price, initial, max, min, image}) 
 							<hr/>
 						</div>
 						<div className='pt-5'>
-							<ItemCount
+							<PanelContainer
 							max={max}
 							min={min}
 							initial={initial}
 							onAdd={addToCart}
+							text="Comprar"
 							/>
 						</div>
 					</div>

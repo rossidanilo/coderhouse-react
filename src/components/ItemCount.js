@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import BuyButton from './BuyButton.js';
 
 const style = {
 	icon: {
@@ -10,16 +11,29 @@ const style = {
 	},
 }
 
-const ItemCount = function({ max, min, initial, onAdd }){
+const ItemCount = function({ max, min, initial, onAdd, text, getQuantity }){
 
 	const [counter, setCounter] = useState(initial);
 
 	const removeItem = function(){
-		counter > min ? setCounter(counter-1) : console.log('Se llegó al límite minimo');
+		if(counter > min){
+			const count = counter - 1;
+			setCounter(count);
+			{getQuantity(count)};
+		} else{
+			console.log('Se llegó al límite minimo')
+		}
+		//counter > min ? setCounter(counter-1) : console.log('Se llegó al límite minimo');
 	}
 
 	const addItem = function(){
-		counter < max ? setCounter(counter+1) : console.log('Se llegó al límite máximo');
+		if(counter < max){
+			setCounter(counter+1);
+			{getQuantity(counter+1)}
+		} else {
+			console.log('Se llegó al límite máximo')
+		}
+		//counter < max ? setCounter(counter+1) : console.log('Se llegó al límite máximo');
 	}
 
 	return(
@@ -40,9 +54,6 @@ const ItemCount = function({ max, min, initial, onAdd }){
   						</a>
   					</div>
   				</div>
-  			</div>
-  			<div className="card-footer">
-  				<button onClick={ () => onAdd(counter) } className="btn btn-info">Agregar al carrito</button>
   			</div>
 		</>
 		);
