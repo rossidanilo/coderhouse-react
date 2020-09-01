@@ -1,6 +1,15 @@
-import React from 'react';
+import React, {useState, useContext} from 'react';
+import { CartContext, useCartContext } from '../context/cartContext.js';
+
+const style = {
+	icon: {
+		cursor: 'pointer',
+	}
+}
 
 const CheckoutDetail = function(){
+	const { items, addToCart, removeItem } = useCartContext();
+
 	return <table className="table table-striped">
 						  <thead>
 						    <tr>
@@ -8,25 +17,21 @@ const CheckoutDetail = function(){
 						      <th scope="col">Cantidad</th>
 						      <th scope="col">Precio Unitario</th>
 						      <th scope="col">Total</th>
+						      <th scope="col"></th>
 						    </tr>
 						  </thead>
 						  <tbody>
+						  {items.map(item => 
 						    <tr>
-						      <td>Amortiguador delantero</td>
-						      <td>2</td>
-						      <td>$20</td>
-						      <td>$40</td>
+						      <td><p>{item.name}</p></td>
+						      <td><p>{item.quantity}</p></td>
+						      <td><p>$20</p></td>
+						      <td><p>{item.quantity * 10}</p></td>
+						      <td>
+						      	<i style={style.icon} onClick={() => removeItem(item.productId)} className="fa fa-trash"></i>
+						      </td>
 						    </tr>
-						    <tr>
-						      <td>Kit de embrague</td>
-						      <td>1</td>
-						      <td>$50</td>
-						      <td>$50</td>
-						    </tr>
-						    <tr className="font-weight-bold">
-						    <td colspan="3">Total</td>
-						    <td>$90</td>
-						    </tr>
+						  	)}
 						  </tbody>
 						</table>
 }

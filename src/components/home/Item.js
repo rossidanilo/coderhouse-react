@@ -31,7 +31,13 @@ const Item = function({id, name, brand, price, initial, min, max, image}){
 				<h5>{brand}</h5>
 				<p>${price}</p>
 	  			<img style={style.image} className="card-img-top img-thumbnail" src={image} alt="product-image"/>
-				<PanelContainer max={max} min={min} initial={initial} onAdd={addToCart} text="Agregar al carrito"/>
+				<PanelContainer 
+					max={max} 
+					min={min} 
+					initial={initial} 
+					text="Agregar al carrito"
+					productId = {id}
+					name={name}/>
 			</div>
 		);
 }

@@ -3,8 +3,6 @@ import PanelContainer from './PanelContainer.js';
 
 const ItemDetail = function({id, name, brand, price, initial, max, min, image}) {
 
-	const addToCart = function(){console.log('Se agregó al carrito')};
-
 	return 	<div className='container'>
 				<div className='row text-center'>
 					<div className='col'>
@@ -22,8 +20,9 @@ const ItemDetail = function({id, name, brand, price, initial, max, min, image}) 
 							max={max}
 							min={min}
 							initial={initial}
-							onAdd={addToCart}
 							text="Comprar"
+							productId ={id}
+							name={name}
 							/>
 						</div>
 					</div>

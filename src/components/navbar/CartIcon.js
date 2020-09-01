@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import { NavLink } from 'react-router-dom';
+import { CartProvider, useCartContext } from '../../context/cartContext.js';
 
 const style = {
 	text: {
@@ -8,10 +9,13 @@ const style = {
 }
 
 function CartIcon() {
+	const { items } = useCartContext();
 	return (
 		<li className="col nav-item">
 			<NavLink className="text-white" to='/cart'>
-				<i className="fa fa-shopping-cart" style={style.text}></i>
+				<i className="fa fa-shopping-cart" style={style.text}>
+					<span className="badge badge-pill badge-light">{items.length}</span>
+				</i>
 			</NavLink>
 		</li>
 		)

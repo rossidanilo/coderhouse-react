@@ -6,11 +6,11 @@ import ItemDetailContainer from './components/ItemDetailContainer.js';
 import Cart from './components/Cart.js';
 import Footer from './components/Footer.js';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { cartContext } from './context/cartContext.js';
+import { CartProvider } from './context/cartContext.js';
 
 function App() {  
   return (
-<cartContext.Provider value={[]}>
+  <CartProvider>
    <BrowserRouter>
     	<div className="App">
       		    <Navbar />
@@ -28,7 +28,7 @@ function App() {
           		<Footer />
     	</div>
     </BrowserRouter>
-</cartContext.Provider>
+  </CartProvider>
   );
 }
 
