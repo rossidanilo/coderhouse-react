@@ -1,5 +1,6 @@
 import React, {useState, useContext} from 'react';
 import { CartContext, useCartContext } from '../context/cartContext.js';
+import { Link } from "react-router-dom";
 
 const style = {
 	icon: {
@@ -21,7 +22,9 @@ const CheckoutDetail = function(){
 						    </tr>
 						  </thead>
 						  <tbody>
-						  {items.map(item => 
+						  {	
+						  	items.length > 0 ?
+						  	items.map(item => 
 						    <tr>
 						      <td><p>{item.name}</p></td>
 						      <td><p>{item.quantity}</p></td>
@@ -31,7 +34,16 @@ const CheckoutDetail = function(){
 						      	<i style={style.icon} onClick={() => removeItem(item.productId)} className="fa fa-trash"></i>
 						      </td>
 						    </tr>
-						  	)}
+						  	) :
+						  	<tr>
+						  		<td colspan="5">
+							  		<div class="alert alert-info" role="alert">
+	  									Oops! Todavía no agregaste productos al carrito.
+	  									<Link className="btn btn-info mt-2" to="/">Comprar productos</Link>
+									</div>
+						  		</td>
+							</tr>
+						  }
 						  </tbody>
 						</table>
 }
