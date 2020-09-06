@@ -2,44 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Loading from './Loading.js';
 import ItemDetail from './ItemDetail.js'
 import { useParams } from 'react-router-dom';
-
-const products = [
-{
-	id:'1', 
-	name: 'Amortiguador Delantero', 
-	brand: 'Sachs', 
-	price: 50, 
-	initial: 2, 
-	min: 2, 
-	max: 10, 
-	image: 'https://5.imimg.com/data5/AQ/LO/MY-49619103/bike-shock-absorber-500x500.jpg'
-},
-{
-	id:'2', 
-	name: 'Embrague', 
-	brand: 'Luk', 
-	price: 100, 
-	initial: 1, 
-	min: 1, 
-	max: 10,
-	image: 'https://5.imimg.com/data5/KT/MR/MY-62371817/mahindra-clutch-kit-500x500.jpg'
-},
-{
-	id:'3', 
-	name: 'Bujia', 
-	brand: 'NGK', 
-	price: 20, 
-	initial: 4, 
-	min: 4, 
-	max: 8, 
-	image: 'https://images.homedepot-static.com/productImages/3b233c00-abcd-4ffd-bbbb-4c2cced3fe61/svn/ngk-ignition-systems-3611-64_1000.jpg'
-}
-];
-
-const getItems = function(id){
-	const product = products.filter(prod => id === prod.id);
-	return product;
-}
+import { getFirestore } from '../firebase';
 
 const ItemDetailContainer = function(){
 
@@ -48,34 +11,35 @@ const [ loading, setLoading] = useState(true);
 const { id } = useParams();
 
 useEffect( () => {
-	const task = new Promise( ( resolve, reject ) => {
-		setTimeout(() => {
-				resolve(getItems(id));
-			}, 3000)});
+	const db = getFirestore();
 
-	task.then(
-		res => {
-			setItem(res);
-			setLoading(false)
-		},
-		err => {console.log(err)},
-		);
+		const itemCollection = db.collection('items');
+		const product = itemCollection.doc(id);
+
+		product.get().then((doc)=>{
+			if(!doc.length === 0){
+				console.log('No existe el producto');
+			}
+			setLoading(false);
+			setItem({ id: doc.id, ...doc.data() });
+		});
 
 	}, [id]);
 
 	return(<div>
-		{ loading && <Loading />}
-		{item.map(it => 
-		<ItemDetail
-		id={it.id}
-		name={it.name}
-		brand={it.brand}
-		price={it.price}
-		initial={it.initial}
-		max={it.max}
-		min={it.min}
-		image={it.image}
-		 />)}
+		{	loading ? 
+			<Loading /> : 
+			<ItemDetail
+				id={item.id}
+				name={item.title}
+				brand={item.brand}
+				price={item.price}
+				initial={item.initial}
+				max={item.stock}
+				min={item.min}
+				image={item.image_id}
+				 />
+		}
 		</div>);
 }
 

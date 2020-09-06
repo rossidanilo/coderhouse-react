@@ -15,9 +15,12 @@ function App() {
     	<div className="App">
       		    <Navbar />
           		<Switch>
-          			<Route exact path='/'>
+          			  <Route exact path='/'>
       		      		<Home />
       		      	</Route>
+                  <Route exact path='/category/:category_id'>
+                    <Home />
+                  </Route>
       		      	<Route path='/item/:id'>
       		      		<ItemDetailContainer />
       		      	</Route>

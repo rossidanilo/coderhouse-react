@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ItemCount from './ItemCount.js';
 import BuyButton from './BuyButton.js';
 
 const PanelContainer = function({name, productId, max, min, initial, text, onAdd}){
-	const [quantity, setQuantity] = useState(initial);
+	const [quantity, setQuantity] = useState(null);
 
 	const getQuantity = function(counter){
 		setQuantity(counter);
 	}
+
+	//Este useEffect lo incluí porque quantity en el BuyButton me tiraba undefined
+	useEffect(() => {
+		setQuantity(initial);
+	}, [initial])
 	
 	return <>
 		<ItemCount 

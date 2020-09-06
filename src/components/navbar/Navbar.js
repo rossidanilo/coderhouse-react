@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const categories = [
 					{id:1, category: 'Amortiguadores'},
-					{id:2, category: 'Bujías'},
+					{id:2, category: 'Bujias'},
 					{id:3, category: 'Embragues'}
 					]
 
@@ -21,7 +21,7 @@ function Navbar() {
 							<a className="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categorías</a>
 							<div className="dropdown-menu" aria-labelledby="dropdown01">
 								{categories.map(category =>
-												<a href={`/category/${category.id}`} className="dropdown-item">{category.category}</a>
+												<a href={`/category/${category.category.toLowerCase()}`} className="dropdown-item">{category.category}</a>
 												)}
 							</div>
 						</li>

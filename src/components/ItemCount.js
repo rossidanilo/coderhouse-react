@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect } from 'react';
 import BuyButton from './BuyButton.js';
 
 const style = {
@@ -12,29 +12,34 @@ const style = {
 }
 
 const ItemCount = function({ max, min, initial, onAdd, text, getQuantity }){
-
-	const [counter, setCounter] = useState(initial);
-
-	const removeItem = function(){
-		if(counter > min){
-			const count = counter - 1;
-			setCounter(count);
-			{getQuantity(count)};
-		} else{
-			console.log('Se llegó al límite minimo')
+	const [counter, setCounter] = useState(null);
+	const [maximo, setMaximo] = useState(null);
+	const [minimo, setMinimo] = useState(null);
+	
+		const removeItem = function(){
+			if(counter > min){
+				const count = counter - 1;
+				setCounter(count);
+				{getQuantity(count)};
+			} else{
+				console.log('Se llegó al límite minimo')
+			}
 		}
-		//counter > min ? setCounter(counter-1) : console.log('Se llegó al límite minimo');
-	}
-
-	const addItem = function(){
-		if(counter < max){
-			setCounter(counter+1);
-			{getQuantity(counter+1)}
-		} else {
-			console.log('Se llegó al límite máximo')
+		const addItem = function(){
+			if(counter < max){
+				setCounter(counter+1);
+				{getQuantity(counter+1)}
+			} else {
+				console.log('Se llegó al límite máximo')
+			}
 		}
-		//counter < max ? setCounter(counter+1) : console.log('Se llegó al límite máximo');
-	}
+
+	//Este useEffect lo incluí porque max,min e initial me tiraban undefined
+	useEffect(() => {
+		setCounter(initial);
+		setMaximo(max);
+		setMinimo(min);
+	}, [initial, max, min]);
 
 	return(
 		<>
