@@ -37,7 +37,9 @@ const Item = function({id, name, brand, price, initial, min, max, image}){
 					initial={initial} 
 					text="Agregar al carrito"
 					productId = {id}
-					name={name}/>
+					name={name}
+					price={price}
+					/>
 			</div>
 		);
 }

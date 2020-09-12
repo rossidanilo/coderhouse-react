@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect } from 'react';
 import { CartContext, useCartContext } from '../context/cartContext.js';
 import { Link } from "react-router-dom";
 
@@ -8,8 +8,22 @@ const style = {
 	}
 }
 
-const CheckoutDetail = function(){
+const CheckoutDetail = function({getItems, getTotal}){
 	const { items, addToCart, removeItem } = useCartContext();
+
+	const calculateTotal = function(elements){
+		let total = 0;
+		elements.map((element) => {
+			total += element.quantity * element.price;
+		});
+
+		return total;
+	}
+
+	useEffect(() => {
+		getItems(items);
+		getTotal(calculateTotal(items));
+	}, [items])
 
 	return <table className="table table-striped">
 						  <thead>
@@ -28,8 +42,8 @@ const CheckoutDetail = function(){
 						    <tr>
 						      <td><p>{item.name}</p></td>
 						      <td><p>{item.quantity}</p></td>
-						      <td><p>$20</p></td>
-						      <td><p>{item.quantity * 10}</p></td>
+						      <td><p>{item.price}</p></td>
+						      <td><p>{item.quantity * item.price}</p></td>
 						      <td>
 						      	<i style={style.icon} onClick={() => removeItem(item.productId)} className="fa fa-trash"></i>
 						      </td>

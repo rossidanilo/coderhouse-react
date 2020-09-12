@@ -23,6 +23,7 @@ const ItemDetail = function({id, name, brand, price, initial, max, min, image}) 
 							text="Comprar"
 							productId ={id}
 							name={name}
+							price={price}
 							/>
 						</div>
 					</div>
