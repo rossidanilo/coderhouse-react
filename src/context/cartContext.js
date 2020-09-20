@@ -10,7 +10,6 @@ export const CartProvider = function({children}){
 	const addToCart = function(name, quantity, id, price){
 		const item = [...items, {'productId': id, 'name': name, 'quantity': quantity, 'price': price}];
 		setItems(item);
-		console.log(items);
 	}
 
 	const removeItem = function(id){

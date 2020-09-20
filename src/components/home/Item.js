@@ -18,11 +18,14 @@ const style = {
 		heigth: 200,
 		marginRight: 'auto',
 		marginLeft: 'auto',
+		borderWidth: 0,
 	},
 }
 
 const Item = function({id, name, brand, price, initial, min, max, image}){
+
 	const addToCart = function(quantity){console.log('Se agregaron '+ quantity + ' unidades al carrito')}
+	
 	return(
 			<div className="card align-items-stretch" style={style.card}>
 				<Link style={style.link} to={`/item/${id}`}>

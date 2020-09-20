@@ -19,11 +19,6 @@ const Footer = function(){
     							</Link>
     						</div>
     						<div className="col">
-    							<Link exact to="/" className="text-white">
-    								<p>Contacto</p>
-    							</Link>
-    						</div>
-    						<div className="col">
     							<Link exact to="/cart" className="text-white">
     								<p>Carrito</p>
     							</Link>

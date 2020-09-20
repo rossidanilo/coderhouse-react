@@ -25,7 +25,6 @@ function Navbar() {
 												)}
 							</div>
 						</li>
-						<NavBarElement name="Contacto" destination="/" />
 						<CartIcon />
 					</ul>
 	  			</div>

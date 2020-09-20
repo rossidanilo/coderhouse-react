@@ -19,7 +19,8 @@ const Cart = function(){
 	const checkUserData = function(){
 		if( userData.name && 
 			userData.phone &&
-			userData.email ){
+			userData.email &&
+			userData.email_2){
 			setEnableBuyButton(false);
 		}
 	}
@@ -85,8 +86,14 @@ const Cart = function(){
 
 	}
 
+const style = {
+  body : {
+    minHeight: 475,
+  }
+}
 
-	return 	<div className="container">
+
+	return 	<div className="container" style={style.body}>
 				{ order ? <div className="container pt-3 pb-3">
 							<h3>El pedido {order} fue ingresado con éxito</h3>
 							<h4>Gracias por tu compra!</h4>

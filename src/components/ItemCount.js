@@ -15,6 +15,8 @@ const ItemCount = function({ max, min, initial, onAdd, text, getQuantity }){
 	const [counter, setCounter] = useState(null);
 	const [maximo, setMaximo] = useState(null);
 	const [minimo, setMinimo] = useState(null);
+	const [alertMin, setAlertMin ] = useState(false);
+	const [alertMax, setAlertMax ] = useState(false);
 	
 		const removeItem = function(){
 			if(counter > min){
@@ -22,7 +24,8 @@ const ItemCount = function({ max, min, initial, onAdd, text, getQuantity }){
 				setCounter(count);
 				{getQuantity(count)};
 			} else{
-				console.log('Se llegó al límite minimo')
+				setAlertMin(true);
+				setTimeout(function(){ setAlertMin(false); }, 2000);
 			}
 		}
 		const addItem = function(){
@@ -30,16 +33,22 @@ const ItemCount = function({ max, min, initial, onAdd, text, getQuantity }){
 				setCounter(counter+1);
 				{getQuantity(counter+1)}
 			} else {
-				console.log('Se llegó al límite máximo')
+				setAlertMax(true);
+				setTimeout(function(){ setAlertMax(false); }, 2000);
 			}
 		}
 
-	//Este useEffect lo incluí porque max,min e initial me tiraban undefined
 	useEffect(() => {
 		setCounter(initial);
 		setMaximo(max);
 		setMinimo(min);
 	}, [initial, max, min]);
+
+	const style = {
+		alert: {
+			color: 'red',
+		}
+	}
 
 	return(
 		<>
@@ -59,6 +68,8 @@ const ItemCount = function({ max, min, initial, onAdd, text, getQuantity }){
   						</a>
   					</div>
   				</div>
+  				{alertMin && <div className="container"><small style={style.alert}>Se alcanzó el pedido mínimo</small></div>}
+  				{alertMax && <div className="container"><small style={style.alert}>Se alcanzó el pedido máximo</small></div>}
   			</div>
 		</>
 		);

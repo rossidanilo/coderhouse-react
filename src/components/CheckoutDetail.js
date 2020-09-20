@@ -23,9 +23,9 @@ const CheckoutDetail = function({getItems, getTotal}){
 	useEffect(() => {
 		getItems(items);
 		getTotal(calculateTotal(items));
-	}, [items])
+	}, [items]);	
 
-	return <table className="table table-striped">
+	return <><table className="table table-striped">
 						  <thead>
 						    <tr>
 						      <th scope="col">Producto</th>
@@ -42,10 +42,13 @@ const CheckoutDetail = function({getItems, getTotal}){
 						    <tr>
 						      <td><p>{item.name}</p></td>
 						      <td><p>{item.quantity}</p></td>
-						      <td><p>{item.price}</p></td>
-						      <td><p>{item.quantity * item.price}</p></td>
+						      <td><p>$ {item.price}</p></td>
+						      <td><p>$ {item.quantity * item.price}</p></td>
 						      <td>
-						      	<i style={style.icon} onClick={() => removeItem(item.productId)} className="fa fa-trash"></i>
+						      	<i style={style.icon} 
+						      	onClick={() => removeItem(item.productId)} 
+						      	className="fa fa-trash">
+						      	</i>
 						      </td>
 						    </tr>
 						  	) :
@@ -60,6 +63,10 @@ const CheckoutDetail = function({getItems, getTotal}){
 						  }
 						  </tbody>
 						</table>
+						<div className="text-center">
+							<h5>Total $ {calculateTotal(items)}</h5>
+						</div>
+						</>
 }
 
 export default CheckoutDetail;

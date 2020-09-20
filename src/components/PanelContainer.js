@@ -9,7 +9,6 @@ const PanelContainer = function({name, productId, max, min, initial, text, onAdd
 		setQuantity(counter);
 	}
 
-	//Este useEffect lo incluí porque quantity en el BuyButton me tiraba undefined
 	useEffect(() => {
 		setQuantity(initial);
 	}, [initial])
